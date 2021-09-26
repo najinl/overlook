@@ -4,13 +4,68 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <title>Overlook</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <header class="header">
+    <h1 class="welcome-msg">Stress Less at the Overlook, <span id="user-first-name"></span>!</h1>
+    <nav class="navigation flex-row">
+       <button class="statistics-btn" id="statisticsBtn" aria-label="user-statistics">
+         <img class="graph icon" src="./images/chart.svg" alt="Graph"/>
+         <div class="nav-item">Statistics</div>
+       </button>
+       <button class="calendar-btn" id="bookingHistoryBtn" aria-label="booking-history">
+         <img class="calendar icon" src="./images/calendar.svg" alt="Calendar"/>
+         <div class="nav-item">Booking History</div>
+       </button>
+       <button class="home-btn hidden" id="bookingHomeBtn" aria-label="available-rooms">
+          <img class="home icon" src="./images/home.svg" alt="Home"/>
+          <div class="nav-item">Home</div>
+       </button>
+       <!-- <input type="image" id="guest-directory-button" src="./images/users-white.png" alt="Guest Directory" class="hidden" aria-label="guest-directory"></input> -->
+       <button class="logout-btn" id="returnToLogin" aria-label="return-to-login">
+         <img class="logout icon" src="./images/logout.svg" alt="Door with arrow out"/>
+         <div class="nav-item">Logout</div>
+       </button>
+    </nav>
+  </header>
+  <main class="main">
+    <summary class="booking-station" id="bookingStation">
+      <form class="room-type">
+        <div class="date">
+          <!-- <label for="dateSelector">Choose Your Dates:</label>
+          <input type="date" id="dateSelector" name="trip-start" value=""
+          min="" max="2024-12-31"> -->
+        </div>
+        <div class="room">
+          <input class="room-tag" id="singleRoom" type="checkbox" value="single room">
+          <label for="singleRoom">Single Room</label>
+        </div>
+        <div class="room">
+          <input class="room-tag" id="juniorSuite" type="checkbox" value="junior suite"
+          <label for="juniorSuite">Junior Suite</label>
+        </div>
+        <div class="room">
+          <input class="room-tag" id="residentialSuite" type="checkbox" value="residential suite">
+          <label for="residentialSuite">Residential Suite</label>
+        </div>
+        <div class="room">
+          <input class="room-tag" id="suite" type="checkbox" value="suite">
+          <label for="suite">Suite</label>
+        </div>
+        <button id="searchDate">Go</button>
+      </form>
+    </summary>
+    <section class="user-statistics hidden" id="userStatistics">
+      <!--Adding User Spent here -->
+    </section>
+    <section class="room-cards">
+      <article class="all-available-rooms" id="availableRooms">
+        <!--Adding Available Rooms here -->
+      </article>
+    </section>
+  </main>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-
 </body>
 </html>

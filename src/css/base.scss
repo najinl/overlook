@@ -1,6 +1,160 @@
 /* This is an example of how to import a partial scss file*/
 @import '_variables';
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
 
 body {
-  background: $primary-background;
+  background: url(../images/hotel-hall.jpg) no-repeat center center fixed;
+  font-family: $font;
+  margin: 0px;
+}
+
+header {
+background-color: #fffacd;
+// margin: 0px;
+height: 52px;
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin-bottom: 3px;
+}
+
+button {
+  cursor: pointer;
+}
+
+label {
+  padding: 0px 10px 0px 4px;
+}
+
+p {
+  margin: 2px 0px 0px 0px;
+  align-self: center;
+}
+
+.navigation {
+  flex: 3;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.welcome-msg {
+  margin-left: 20px;
+  flex: 2;
+}
+
+.icon {
+  margin-bottom: 5px;
+}
+
+.statistics-btn, .calendar-btn, .home-btn, .logout-btn  {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  font-size: 22px;
+  background-color: #fffacd;
+  border: none;
+  padding: 0px 20px 0px 16px;
+
+  &:hover {
+    background-color: #fdfd96;
+  }
+}
+
+.nav-item {
+  margin-left: 2px;
+}
+
+.main {
+  margin: 30px 50px 20px 50px
+  // border-radius: 12px;
+  // display: flex;
+  // flex-direction: row;
+  // align-items: center;
+  // border: 2px solid green;
+}
+
+.booking-station, .user-statistics {
+  font-size: 1.2em;
+  border-radius: 7px;
+  background-color: #fffacd;
+  opacity: .9;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.room-type, .amount-spent{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  // border: 2px solid blue;
+}
+
+// .date {
+//   padding: 0px 10px 0px 0px
+// }
+
+.room {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 10px 0px 0px;
+  // margin-bottom: 5px
+}
+
+.all-available-rooms {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #4A2511;
+  // margin: 0px 0px 0px 0px;
+  // border: 2px solid red;
+}
+
+.room-card {
+  display: flex;
+  align-content: flex-start;
+  flex-direction: column;
+  width: 350px;
+  height: auto;
+  margin: 15px 15px 5px 15px;
+  // color:#696969;
+  background-color: #fffacd;
+  opacity: .87;
+  border-radius: 7px;
+  font-size: 1.15em;
+  padding-bottom: 15px;
+}
+
+.room-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.bed-img {
+  // margin: 0px 0px 0px 0px;
+  height: 100px;
+  width: 100px;
+  // align-self: center;
+}
+
+.hidden {
+  display: none !important;
 }
