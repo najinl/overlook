@@ -8,13 +8,13 @@
 </head>
 <body>
   <header class="header">
-    <h1 class="welcome-msg">Stress Less at the Overlook, <span id="user-first-name"></span>!</h1>
+    <h1 class="welcome-msg">Stress Less at the Overlook, <span id="userFirstName"></span>!</h1>
     <nav class="navigation flex-row">
        <button class="statistics-btn" id="statisticsBtn" aria-label="user-statistics">
          <img class="graph icon" src="./images/chart.svg" alt="Graph"/>
          <div class="nav-item">Statistics</div>
        </button>
-       <button class="calendar-btn" id="bookingHistoryBtn" aria-label="booking-history">
+       <button class="calendar-btn" id="bookingHistoryBtn" aria-label="booking-history-button">
          <img class="calendar icon" src="./images/calendar.svg" alt="Calendar"/>
          <div class="nav-item">Booking History</div>
        </button>
@@ -33,9 +33,6 @@
     <summary class="booking-station" id="bookingStation">
       <form class="room-type">
         <div class="date">
-          <!-- <label for="dateSelector">Choose Your Dates:</label>
-          <input type="date" id="dateSelector" name="trip-start" value=""
-          min="" max="2024-12-31"> -->
         </div>
         <div class="room">
           <input class="room-tag" id="singleRoom" type="checkbox" value="single room">
@@ -57,15 +54,18 @@
       </form>
     </summary>
     <section class="user-statistics hidden" id="userStatistics">
-      <!--Adding User Spent here -->
     </section>
     <section class="room-cards">
       <article class="all-available-rooms" id="availableRooms">
-        <!--Adding Available Rooms here -->
       </article>
     </section>
+    <section class="booking-history hidden" id="bookingHistory">
+        <article class="future-bookings" id="futureBookings">
+        </article>
+        <article class="past-bookings" id="pastBookings">
+        </article>
+    </section>
   </main>
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 </body>
 </html>

@@ -29,6 +29,11 @@ h2 {
 
 button {
   cursor: pointer;
+  font-family: $font;
+  border-radius: 4px;
+  &:hover {
+    background-color: #fdfd96;
+  }
 }
 
 label {
@@ -76,10 +81,6 @@ p {
 
 .main {
   margin: 30px 50px 20px 50px
-  // border-radius: 12px;
-  // display: flex;
-  // flex-direction: row;
-  // align-items: center;
   // border: 2px solid green;
 }
 
@@ -101,10 +102,6 @@ p {
   // border: 2px solid blue;
 }
 
-// .date {
-//   padding: 0px 10px 0px 0px
-// }
-
 .room {
   display: flex;
   flex-direction: row;
@@ -123,7 +120,7 @@ p {
   // border: 2px solid red;
 }
 
-.room-card {
+.room-card, .booking-card {
   display: flex;
   align-content: flex-start;
   flex-direction: column;
@@ -143,16 +140,51 @@ p {
   flex-direction: row;
   justify-content: space-around;
 }
+
+.booking-history {
+  display: flex;
+  flex-direction: row;
+}
+
+.future-bookings, .past-bookings {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
 }
 
+// .flex-row {
+//   display: flex;
+//   flex-direction: row;
+// }
+
 .bed-img {
-  // margin: 0px 0px 0px 0px;
   height: 100px;
   width: 100px;
-  // align-self: center;
+}
+
+.book-room {
+  width: 30%;
+  margin-top: 7px;
+  align-self: center;
+}
+
+.reservation-date, .booking-card {
+  align-self: center;
+}
+
+.reservation-type {
+  background-color: #fffacd;
+  text-decoration: underline;
+  align-self: center;
+  border-radius: 7px;
+  padding: 8px 15px 8px 15px;
+  opacity: .9;
+
 }
 
 .hidden {

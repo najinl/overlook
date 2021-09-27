@@ -8,4 +8,11 @@ export default class Booking {
     this.cost = 0;
   }
 
+  calculateBookingCost(rooms) {
+    rooms.forEach(room => {
+      if(room.number === this.roomNumber) {
+        this.cost = room.costPerNight;
+      }
+    })
+  }
 }
