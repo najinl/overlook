@@ -1,3 +1,4 @@
+export const userFirstName = document.getElementById('userFirstName');
 export const availableRooms = document.getElementById('availableRooms');
 export const dateSelector = document.querySelector('.date');
 export const searchDate = document.getElementById('searchDate');
@@ -6,3 +7,7 @@ export const bookingHomeBtn = document.getElementById('bookingHomeBtn');
 export const statisticsBtn = document.getElementById('statisticsBtn');
 export const userStatistics = document.getElementById('userStatistics');
 export const bookingStation = document.getElementById('bookingStation');
+export const bookingHistory = document.getElementById('bookingHistory');
+export const futureBookings = document.getElementById('futureBookings');
+export const pastBookings = document.getElementById('pastBookings');
+export const bookingHistoryBtn = document.getElementById('bookingHistoryBtn');

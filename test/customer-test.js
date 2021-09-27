@@ -2,13 +2,17 @@ import chai from 'chai';
 const expect = chai.expect;
 import {testData} from './sample-test.js';
 import Customer from '../src/classes/customer';
-// import Booking from '../src/classes/booking';
+import Booking from '../src/classes/booking';
 
 describe('Customer', function() {
   let customer11, bookings, rooms
 
   beforeEach(() => {
-    bookings = testData.bookings;
+    bookings = testData.bookings
+    .reduce((allBookings, booking) => {
+      allBookings.push(new Booking(booking))
+      return allBookings;
+    }, []);
     customer11 = new Customer(testData.customers[0])
     rooms = testData.rooms;
   })
@@ -42,14 +46,18 @@ describe('Customer', function() {
     expect(customer11.bookings).to.deep.equal([{
       "id": "5fwrgu4i7k55hl6tb",
       "userID": 11,
-      "date": "2020/02/06",
+      "date": "2/6/2020",
       "roomNumber": 5,
+      "roomServiceCharges": [],
+      "cost": 0
     },
     {
       "id": "5fwrgu4i7k55hl6tc",
       "userID": 11,
-      "date": "2020/02/05",
+      "date": "2/5/2020",
       "roomNumber": 5,
+      "roomServiceCharges": [],
+      "cost": 0
     }])
   })
 
@@ -58,5 +66,36 @@ describe('Customer', function() {
     customer11.calculateTotalSpent(rooms)
 
     expect(customer11.totalSpent).to.deep.equal(522.52)
+  })
+
+  it('should return all future bookings', () => {
+    customer11.addCustomerBooking(bookings);
+    expect(customer11.findFutureBookings('2/1/2020')).to.deep.equal([{
+      "id": "5fwrgu4i7k55hl6tb",
+      "userID": 11,
+      "date": "2/6/2020",
+      "roomNumber": 5,
+      "roomServiceCharges": [],
+      "cost": 0
+    },
+    {
+      "id": "5fwrgu4i7k55hl6tc",
+      "userID": 11,
+      "date": "2/5/2020",
+      "roomNumber": 5,
+      "roomServiceCharges": [],
+      "cost": 0
+    }])
+  })
+  it('should return all past bookings', () => {
+    customer11.addCustomerBooking(bookings);
+    expect(customer11.findPastBookings('2/6/2020')).to.deep.equal([{
+      "id": "5fwrgu4i7k55hl6tc",
+      "userID": 11,
+      "date": "2/5/2020",
+      "roomNumber": 5,
+      "roomServiceCharges": [],
+      "cost": 0
+    }])
   })
 });
