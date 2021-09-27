@@ -29,7 +29,7 @@ export default class Customer {
 
   findFutureBookings(currentDate) {
     return this.bookings.reduce((futureBookings, booking) => {
-      if(booking.date >= currentDate) {
+      if(new Date(booking.date) >= new Date(currentDate)) {
         futureBookings.push(booking)
       }
     return futureBookings;
@@ -38,10 +38,14 @@ export default class Customer {
 
   findPastBookings(currentDate) {
     return this.bookings.reduce((pastBookings, booking) => {
-      if(booking.date < currentDate) {
+      if(new Date(booking.date) < new Date(currentDate)) {
         pastBookings.push(booking)
       }
     return pastBookings;
     }, [])
+  }
+
+  addNewCustomerBooking(addedBooking) {
+    this.bookings.push(addedBooking);
   }
 }
