@@ -1,17 +1,13 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/chart.svg'
 import './images/calendar.svg'
 import './images/home.svg'
 import './images/logout.svg'
 import './images/bed.svg'
-import {fetchInfo} from './apiCalls.js';
+import {fetchInfo, addBooking} from './apiCalls.js';
 import domUpdates from './domUpdates';
-import {searchDate, bookingHomeBtn, statisticsBtn, bookingHistoryBtn} from './domElements'
+import {searchDate, bookingHomeBtn, statisticsBtn, bookingHistoryBtn}
+from './domElements'
 import Customer from './classes/customer'
 import Booking from './classes/booking'
 
@@ -40,6 +36,7 @@ const parseData = (info) => {
 
   instantiation(customers);
   customer.addCustomerBooking(bookings); //<----Should go in on window load below.
+  console.log(bookings)
 }
 
 const instantiation = (customersArr) => {
@@ -68,6 +65,17 @@ searchDate.addEventListener('click', () => {
   domUpdates.filterByRoomType(date, rooms, bookings);
 })
 
+availableRooms.addEventListener('click', (e) => {
+  if(e.target.classList.contains('book-room')) {
+    // console.log(e.target)
+    let cardData = e.target.parentNode
+    console.log(customer);
+    let roomNumber = cardData.childNodes[3].childNodes[3].childNodes[1].innerText
+      .split('Room Number: ')[1];
+    bookRoom(roomNumber, customer, rooms);
+  }
+})
+
 statisticsBtn.addEventListener('click', () => {
   domUpdates.returnCustomerExpense(customer, bookings, rooms);
   domUpdates.toggleToStatistics();
@@ -78,10 +86,14 @@ bookingHomeBtn.addEventListener('click', () => {
 })
 
 bookingHistoryBtn.addEventListener('click', () => {
+  date = dateSelector.value.split('-').join('/');
   domUpdates.toggleToHistory();
-  console.log(customer)
-  domUpdates.filterBookingHistory(customer, '1/30/2020') //<---hard-coded date
+  // console.log(customer)
+  domUpdates.filterBookingHistory(customer, date)
+  // domUpdates.filterBookingHistory(customer, '1/30/2020') //<---hard-coded date
 })
+
+
 
 //functions
 const formatDate = (joinBy) => {
@@ -99,4 +111,23 @@ const formatDate = (joinBy) => {
     }
 
     return [year, month, day].join(joinBy);
+}
+
+const bookRoom = (roomNumber, customer, rooms) => {
+  let rawBooking = {
+    "id": Date.now(),
+    "userID": customer.id,
+    "date": dateSelector.value.split('-').join('/'),
+    "roomNumber": parseInt(roomNumber),
+  };
+  let addedBooking = new Booking(rawBooking);
+  addedBooking.calculateBookingCost(rooms);
+  customer.addNewCustomerBooking(addedBooking); //--->Add to current customer bookings
+  // console.log(customer.bookings)
+  // console.log(addedBooking)
+  // console.log('rawBook', bookings)
+  bookings.push(addedBooking);
+  addBooking(rawBooking) //--->Add to global hotel bookings
+  // console.log('addedBook', bookings)
+  domUpdates.filterByRoomType(date, rooms, bookings) //--->Update current available rooms display
 }

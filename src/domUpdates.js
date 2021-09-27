@@ -2,6 +2,8 @@ import {userFirstName, dateSelector, availableRooms, checkBoxes, userStatistics,
   statisticsBtn, bookingStation, bookingHomeBtn, bookingHistoryBtn,
   bookingHistory, futureBookings, pastBookings} from './domElements';
 
+// export let bookBtn;
+
 let domUpdates = {
   greetCustomer(customerName) {
     userFirstName.innerHTML = customerName;
@@ -35,7 +37,8 @@ let domUpdates = {
   },
 
   filterByRoomType(date, rooms, bookings) {
-    let roomsAvailable = this.findAvailableRooms(date, bookings);
+    let roomsUnavailable = this.findAvailableRooms(date, bookings);
+    console.log('roomsUnavailable?',roomsUnavailable)
     let selectedRoomType = this.findFilteredRooms();
     rooms.forEach(room => {
       let bidetStatus;
@@ -44,30 +47,33 @@ let domUpdates = {
       } else {
         bidetStatus = 'No Bidet'
       }
-      if(!roomsAvailable.includes(room.number) && selectedRoomType.length < 1) {
+      if(roomsUnavailable.length === 25) {
+        availableRooms.innerHTML = '<p class="apology">We are so sorry! Very, very sorry! There are no available rooms for this date. Please forgive us!Please try another date.</p>'
+      }
+      if(!roomsUnavailable.includes(room.number) && selectedRoomType.length < 1) {
         availableRooms.innerHTML += `<section class="room-card">
-          <h2 class="room-type">${room.roomType.toUpperCase()}</h2>
+          <h2 class="room-type" aria-label="${room.roomType}">${room.roomType.toUpperCase()}</h2>
           <div class="room-data">
             <img class="bed-img"src="./images/bed.svg" alt="Bed">
-            <div class="flex-column">
-              <p>Room Number: ${room.number}</p>
-              <p>${room.numBeds} ${room.bedSize.toUpperCase()}</p>
+            <div class="flex-column" aria-label="room details">
+              <p aria-label="room number">Room Number: ${room.number}</p>
+              <p aria-label="number of beds">${room.numBeds} ${room.bedSize.toUpperCase()}</p>
               <p>${bidetStatus}</p>
-              <p>$${room.costPerNight} per night</p>
+              <p aria-label="cost">$${room.costPerNight} per night</p>
             </div>
         </div>
         <button class="book-room" id="bookRoom">Book Room</button>
         </section>`
-      } else if(!roomsAvailable.includes(room.number) && selectedRoomType.includes(room.roomType)) {
+      } else if(!roomsUnavailable.includes(room.number) && selectedRoomType.includes(room.roomType)) {
         availableRooms.innerHTML += `<section class="room-card">
-          <h2 class="room-type">${room.roomType.toUpperCase()}</h2>
+          <h2 class="room-type" aria-label="${room.roomType}>${room.roomType.toUpperCase()}</h2>
           <div class="room-data">
             <img class="bed-img"src="./images/bed.svg" alt="Bed">
-            <div class="flex-column">
-              <p>Room Number: ${room.number}</p>
-              <p>${room.numBeds} ${room.bedSize.toUpperCase()}</p>
+            <div class="flex-column" aria-label="room details">
+              <p aria-label="room number">Room Number: ${room.number}</p>
+              <p aria-label="number of beds">${room.numBeds} ${room.bedSize.toUpperCase()}</p>
               <p>${bidetStatus}</p>
-              <p>$${room.costPerNight} per night</p>
+              <p aria-label="cost">$${room.costPerNight} per night</p>
             </div>
           </div>
           <button class="book-room" id="bookRoom">Book Room</button>
@@ -91,7 +97,7 @@ let domUpdates = {
     pastBookings.innerHTML = '<h2 class="reservation-type">PAST BOOKINGS</h2>';
     let allFutureBookings = customer.findFutureBookings(currentDate);
     let allPastBookings = customer.findPastBookings(currentDate);
-    // console.log('UGH',futureBookings)
+    console.log(customer.bookings)
     // console.log('all', customer.bookings.length)
     allFutureBookings.forEach(book => {
       futureBookings.innerHTML += `
