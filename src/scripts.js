@@ -20,7 +20,6 @@ function fetchAllInfo() {
   let bookingsPromise = fetchInfo('bookings');
   Promise.all([customersPromise, roomsPromise, bookingsPromise])
   .then(data => parseData(data))
-  // .catch(error => console.log(error);
 }
 
 const parseData = (info) => {
@@ -35,15 +34,14 @@ const parseData = (info) => {
   }, [])
 
   instantiation(customers);
-  customer.addCustomerBooking(bookings); //<----Should go in on window load below.
-  console.log(bookings)
+  customer.addCustomerBooking(bookings);
 }
 
 const instantiation = (customersArr) => {
   let i = Math.floor(Math.random() * customersArr.length);
   customer = new Customer(customersArr[i]);
-  firstName = customer.name.split(' ')[0]; //<----Should go in on window load below.
-  domUpdates.greetCustomer(firstName) //<----Should go in on window load below.
+  firstName = customer.name.split(' ')[0];
+  domUpdates.greetCustomer(firstName);
 }
 
 //eventListeners
@@ -51,25 +49,18 @@ window.addEventListener('load', (e) => {
   fetchAllInfo();
   date = formatDate('-')
   domUpdates.updateCalendar(date);
-  // console.log(name)
-  // domUpdates.greetCustomer(name)<----Can't get to work here.
-  // customer.addCustomerBooking(bookings);<----Can't get to work here.
-  // domUpdates.displayAvailableRooms(date, rooms, bookings); <----Ask Robbie why date, rooms, bookings don't exist yet!!
 })
 
 searchDate.addEventListener('click', () => {
   event.preventDefault()
   date = dateSelector.value.split('-').join('/');
   date = new Date(date).toLocaleDateString();
-  // console.log(date)
   domUpdates.filterByRoomType(date, rooms, bookings);
 })
 
 availableRooms.addEventListener('click', (e) => {
   if(e.target.classList.contains('book-room')) {
-    // console.log(e.target)
     let cardData = e.target.parentNode
-    console.log(customer);
     let roomNumber = cardData.childNodes[3].childNodes[3].childNodes[1].innerText
       .split('Room Number: ')[1];
     bookRoom(roomNumber, customer, rooms);
@@ -88,9 +79,7 @@ bookingHomeBtn.addEventListener('click', () => {
 bookingHistoryBtn.addEventListener('click', () => {
   date = dateSelector.value.split('-').join('/');
   domUpdates.toggleToHistory();
-  // console.log(customer)
   domUpdates.filterBookingHistory(customer, date)
-  // domUpdates.filterBookingHistory(customer, '1/30/2020') //<---hard-coded date
 })
 
 
@@ -122,12 +111,8 @@ const bookRoom = (roomNumber, customer, rooms) => {
   };
   let addedBooking = new Booking(rawBooking);
   addedBooking.calculateBookingCost(rooms);
-  customer.addNewCustomerBooking(addedBooking); //--->Add to current customer bookings
-  // console.log(customer.bookings)
-  // console.log(addedBooking)
-  // console.log('rawBook', bookings)
+  customer.addNewCustomerBooking(addedBooking);
   bookings.push(addedBooking);
-  addBooking(rawBooking) //--->Add to global hotel bookings
-  // console.log('addedBook', bookings)
-  domUpdates.filterByRoomType(date, rooms, bookings) //--->Update current available rooms display
+  addBooking(rawBooking)
+  domUpdates.filterByRoomType(date, rooms, bookings);
 }

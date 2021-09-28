@@ -7,7 +7,7 @@
   <title>Overlook</title>
 </head>
 <body>
-  <header class="header">
+  <header class="header" id="headerSection">
     <h1 class="welcome-msg">Stress Less at the Overlook, <span id="userFirstName"></span>!</h1>
     <nav class="navigation">
        <button class="statistics-btn" id="statisticsBtn">
@@ -22,7 +22,7 @@
           <img class="home icon" src="./images/home.svg" alt="Home"/>
           <div class="nav-item"aria-label="go home to see available rooms">Home</div>
        </button>
-       <button class="logout-btn" id="returnToLogin">
+       <button class="logout-btn" id="returnToLogin" onclick="location.reload()">
          <img class="logout icon" src="./images/logout.svg" alt="Door with arrow out"/>
          <div class="nav-item" aria-label="return to login">Logout</div>
        </button>
@@ -49,7 +49,7 @@
           <input class="room-tag" id="suite" type="checkbox" value="suite">
           <label for="suite">Suite</label>
         </div>
-        <button id="searchDate">Go</button>
+        <button type="button" id="searchDate" aria-label="start room search">Go</button>
       </form>
     </summary>
     <section class="user-statistics hidden" id="userStatistics">

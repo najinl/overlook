@@ -38,7 +38,6 @@ let domUpdates = {
 
   filterByRoomType(date, rooms, bookings) {
     let roomsUnavailable = this.findAvailableRooms(date, bookings);
-    console.log('roomsUnavailable?',roomsUnavailable)
     let selectedRoomType = this.findFilteredRooms();
     rooms.forEach(room => {
       let bidetStatus;
@@ -66,7 +65,7 @@ let domUpdates = {
         </section>`
       } else if(!roomsUnavailable.includes(room.number) && selectedRoomType.includes(room.roomType)) {
         availableRooms.innerHTML += `<section class="room-card">
-          <h2 class="room-type" aria-label="${room.roomType}>${room.roomType.toUpperCase()}</h2>
+          <h2 class="room-type" aria-label="${room.roomType}">${room.roomType.toUpperCase()}</h2>
           <div class="room-data">
             <img class="bed-img"src="./images/bed.svg" alt="Bed">
             <div class="flex-column" aria-label="room details">
@@ -83,22 +82,18 @@ let domUpdates = {
   },
   returnCustomerExpense(customer, bookings, rooms) {
     userStatistics.innerHTML = '';
-    // customer.addCustomerBooking(bookings)
     let total = customer.calculateTotalSpent(rooms);
     this.toggleToStatistics();
     userStatistics.innerHTML += `<div class= "amount-spent" id="amountSpent">
     <p>You've spent $${total} at The Overlook to date. Thank you for your loyalty!</p>
     </div>`;
-    console.log(customer)
   },
 
-  filterBookingHistory(customer, currentDate) {
+  filterBookingHistory(customer) {
     futureBookings.innerHTML = '<h2 class="reservation-type">FUTURE BOOKINGS</h2>';
     pastBookings.innerHTML = '<h2 class="reservation-type">PAST BOOKINGS</h2>';
-    let allFutureBookings = customer.findFutureBookings(currentDate);
-    let allPastBookings = customer.findPastBookings(currentDate);
-    console.log(customer.bookings)
-    // console.log('all', customer.bookings.length)
+    let allFutureBookings = customer.findFutureBookings();
+    let allPastBookings = customer.findPastBookings();
     allFutureBookings.forEach(book => {
       futureBookings.innerHTML += `
       <section class="booking-card" "flex-column">

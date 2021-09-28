@@ -27,18 +27,18 @@ export default class Customer {
     return this.totalSpent.toFixed(2);
   }
 
-  findFutureBookings(currentDate) {
+  findFutureBookings() {
     return this.bookings.reduce((futureBookings, booking) => {
-      if(new Date(booking.date) >= new Date(currentDate)) {
+      if(new Date(booking.date) >= new Date()) {
         futureBookings.push(booking)
       }
     return futureBookings;
     }, [])
   }
 
-  findPastBookings(currentDate) {
+  findPastBookings() {
     return this.bookings.reduce((pastBookings, booking) => {
-      if(new Date(booking.date) < new Date(currentDate)) {
+      if(new Date(booking.date) < new Date()) {
         pastBookings.push(booking)
       }
     return pastBookings;
