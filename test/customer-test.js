@@ -136,4 +136,34 @@ describe('Customer', function() {
     "cost": 0
     }])
   })
+
+  it('should not add duplicate bookings to the same customer', () => {
+    customer11.addCustomerBooking(bookings);
+    customer11.addNewCustomerBooking(addedBooking);
+
+    expect(customer11.bookings).to.deep.equal([{
+      "id": "5fwrgu4i7k55hl6tb",
+      "userID": 11,
+      "date": "2/6/2020",
+      "roomNumber": 5,
+      "roomServiceCharges": [],
+      "cost": 0
+    },
+    {
+      "id": "5fwrgu4i7k55hl6tc",
+      "userID": 11,
+      "date": "2/5/2020",
+      "roomNumber": 5,
+      "roomServiceCharges": [],
+      "cost": 0
+    },
+    {
+    "id": Date.now(),
+    "userID": 11,
+    "date": "9/26/2021",
+    "roomNumber": 4,
+    "roomServiceCharges": [],
+    "cost": 0
+    }])
+  })
 });

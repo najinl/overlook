@@ -1,3 +1,10 @@
+export const loginStation = document.getElementById('loginStation');
+export const usernameField = document.getElementById('usernameField');
+export const passwordField = document.getElementById('passwordField');
+export const loginBtn = document.getElementById('loginBtn');
+export const loginError = document.getElementById('loginErrorMessage');
+export const header = document.getElementById('headerSection');
+export const webApiError = document.getElementById('webApiError');
 export const userFirstName = document.getElementById('userFirstName');
 export const availableRooms = document.getElementById('availableRooms');
 export const dateSelector = document.querySelector('.date');

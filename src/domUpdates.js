@@ -1,8 +1,7 @@
 import {userFirstName, dateSelector, availableRooms, checkBoxes, userStatistics,
   statisticsBtn, bookingStation, bookingHomeBtn, bookingHistoryBtn,
-  bookingHistory, futureBookings, pastBookings} from './domElements';
-
-// export let bookBtn;
+  bookingHistory, futureBookings, pastBookings, loginError, loginStation,
+  header, webApiError} from './domElements';
 
 let domUpdates = {
   greetCustomer(customerName) {
@@ -38,7 +37,6 @@ let domUpdates = {
 
   filterByRoomType(date, rooms, bookings) {
     let roomsUnavailable = this.findAvailableRooms(date, bookings);
-    console.log('roomsUnavailable?',roomsUnavailable)
     let selectedRoomType = this.findFilteredRooms();
     rooms.forEach(room => {
       let bidetStatus;
@@ -66,7 +64,7 @@ let domUpdates = {
         </section>`
       } else if(!roomsUnavailable.includes(room.number) && selectedRoomType.includes(room.roomType)) {
         availableRooms.innerHTML += `<section class="room-card">
-          <h2 class="room-type" aria-label="${room.roomType}>${room.roomType.toUpperCase()}</h2>
+          <h2 class="room-type" aria-label="${room.roomType}">${room.roomType.toUpperCase()}</h2>
           <div class="room-data">
             <img class="bed-img"src="./images/bed.svg" alt="Bed">
             <div class="flex-column" aria-label="room details">
@@ -83,13 +81,11 @@ let domUpdates = {
   },
   returnCustomerExpense(customer, bookings, rooms) {
     userStatistics.innerHTML = '';
-    // customer.addCustomerBooking(bookings)
     let total = customer.calculateTotalSpent(rooms);
     this.toggleToStatistics();
     userStatistics.innerHTML += `<div class= "amount-spent" id="amountSpent">
     <p>You've spent $${total} at The Overlook to date. Thank you for your loyalty!</p>
     </div>`;
-    console.log(customer)
   },
 
   filterBookingHistory(customer, currentDate) {
@@ -97,8 +93,6 @@ let domUpdates = {
     pastBookings.innerHTML = '<h2 class="reservation-type">PAST BOOKINGS</h2>';
     let allFutureBookings = customer.findFutureBookings(currentDate);
     let allPastBookings = customer.findPastBookings(currentDate);
-    console.log(customer.bookings)
-    // console.log('all', customer.bookings.length)
     allFutureBookings.forEach(book => {
       futureBookings.innerHTML += `
       <section class="booking-card" "flex-column">
@@ -120,33 +114,42 @@ let domUpdates = {
     })
   },
 
+  addClass(element, classList) {
+    element.forEach(el => el.classList.add(classList))
+  },
+
+  removeClass(element, classList) {
+    element.forEach(el => el.classList.remove(classList));
+  },
+
+  returnApiFailMsg(message) {
+    this.addClass([bookingStation, header], 'hidden');
+    this.removeClass([webApiError], 'hidden');
+    webApiError.innerHTML = (`<p class="error-message-api">${message}</p>`);
+  },
+
+  returnFailureMessage() {
+    loginError.classList.remove('hidden');
+  },
+
+  leaveLogin() {
+    loginStation.classList.add('hidden');
+    header.classList.remove('hidden');
+  },
+
   toggleToHistory() {
-      bookingHomeBtn.classList.remove('hidden');
-      statisticsBtn.classList.add('hidden');
-      bookingStation.classList.add('hidden');
-      bookingHistoryBtn.classList.add('hidden');
-      statisticsBtn.classList.add('hidden');
-      bookingHistory.classList.remove('hidden');
-      availableRooms.classList.add('hidden');
+    this.addClass([statisticsBtn, bookingStation, bookingHistoryBtn, availableRooms], 'hidden');
+    this.removeClass([bookingHomeBtn, bookingHistory], 'hidden');
   },
 
   toggleToStatistics() {
-    bookingStation.classList.add('hidden');
-    statisticsBtn.classList.add('hidden');
-    availableRooms.classList.add('hidden');
-    userStatistics.classList.remove('hidden');
-    bookingHomeBtn.classList.remove('hidden');
-    bookingHistoryBtn.classList.add('hidden')
+    this.addClass([statisticsBtn, bookingStation, bookingHistoryBtn, availableRooms], 'hidden');
+    this.removeClass([userStatistics, bookingHomeBtn], 'hidden');
   },
 
   toggleToHome() {
-    bookingStation.classList.remove('hidden');
-    statisticsBtn.classList.remove('hidden');
-    availableRooms.classList.remove('hidden');
-    bookingHistoryBtn.classList.remove('hidden')
-    userStatistics.classList.add('hidden');
-    bookingHomeBtn.classList.add('hidden');
-    bookingHistory.classList.add('hidden');
+    this.addClass([userStatistics, bookingHomeBtn, bookingHistory], 'hidden');
+    this.removeClass([bookingStation, statisticsBtn, availableRooms, bookingHistoryBtn], 'hidden');
   },
 }
 
