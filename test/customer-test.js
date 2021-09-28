@@ -19,7 +19,7 @@ describe('Customer', function() {
     addedBooking = new Booking({
       "id": Date.now(),
       "userID": 11,
-      "date": "09/26/2021",
+      "date": "09/30/2021",
       "roomNumber": 4,
     });
   })
@@ -77,7 +77,20 @@ describe('Customer', function() {
 
   it('should return all future bookings', () => {
     customer11.addCustomerBooking(bookings);
-    expect(customer11.findFutureBookings('2/1/2020')).to.deep.equal([{
+    customer11.addNewCustomerBooking(addedBooking);
+    expect(customer11.findFutureBookings()).to.deep.equal([{
+      "id": Date.now(),
+      "userID": 11,
+      "date": "9/30/2021",
+      "roomNumber": 4,
+      "roomServiceCharges": [],
+      "cost": 0
+    }])
+  })
+
+  it('should return all past bookings', () => {
+    customer11.addCustomerBooking(bookings);
+    expect(customer11.findPastBookings()).to.deep.equal([{
       "id": "5fwrgu4i7k55hl6tb",
       "userID": 11,
       "date": "2/6/2020",
@@ -86,18 +99,6 @@ describe('Customer', function() {
       "cost": 0
     },
     {
-      "id": "5fwrgu4i7k55hl6tc",
-      "userID": 11,
-      "date": "2/5/2020",
-      "roomNumber": 5,
-      "roomServiceCharges": [],
-      "cost": 0
-    }])
-  })
-
-  it('should return all past bookings', () => {
-    customer11.addCustomerBooking(bookings);
-    expect(customer11.findPastBookings('2/6/2020')).to.deep.equal([{
       "id": "5fwrgu4i7k55hl6tc",
       "userID": 11,
       "date": "2/5/2020",
@@ -130,7 +131,7 @@ describe('Customer', function() {
     {
     "id": Date.now(),
     "userID": 11,
-    "date": "9/26/2021",
+    "date": "9/30/2021",
     "roomNumber": 4,
     "roomServiceCharges": [],
     "cost": 0
@@ -160,7 +161,7 @@ describe('Customer', function() {
     {
     "id": Date.now(),
     "userID": 11,
-    "date": "9/26/2021",
+    "date": "9/30/2021",
     "roomNumber": 4,
     "roomServiceCharges": [],
     "cost": 0
