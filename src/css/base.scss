@@ -27,6 +27,7 @@ button {
   cursor: pointer;
   font-family: $font;
   border-radius: 4px;
+  border: solid 1px;
   &:hover {
     background-color: $btn-hover-color;
   }
@@ -78,13 +79,33 @@ p {
   margin: 30px 50px 20px 50px
 }
 
-.booking-station, .user-statistics {
+.booking-station, .user-statistics, .login-station, .web-api-error {
   font-size: 1.2em;
   border-radius: $non-button-border-radius;
   background-color: $primary-background;
   opacity: $opacity-common;
   height: 80px;
   margin-bottom: 10px;
+}
+
+.login-station, .web-api-error {
+  position: fixed;
+  left: 33%;
+  top: 15%;
+  text-align: center;
+  @include set-dimension (130px, 500px);
+}
+
+.error-message-container {
+  @include set-dimension (20px, auto);
+    .error-message {
+      color: red;
+      font-size: .8em;
+    }
+}
+
+.error-message-api {
+  padding-top: 4%;
 }
 
 .room-type, .amount-spent{

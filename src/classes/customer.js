@@ -7,7 +7,7 @@ export default class Customer {
   }
 
   addCustomerBooking(bookingData) {
-    this.bookings = []; //<----feels like there is a better place to put this!
+    this.bookings = [];
     bookingData.forEach(booking => {
       if(booking.userID === this.id) {
         this.bookings.push(booking);
@@ -16,7 +16,7 @@ export default class Customer {
   }
 
   calculateTotalSpent(rooms) {
-    this.totalSpent = 0; //<---I think I'd need to zero this out each time I call the function, since it's only coming from the bookings.
+    this.totalSpent = 0;
     this.bookings.forEach(booking => {
       rooms.forEach(room => {
         if(booking.roomNumber === room.number) {
@@ -46,6 +46,8 @@ export default class Customer {
   }
 
   addNewCustomerBooking(addedBooking) {
+    if(!this.bookings.includes(addedBooking)) {
     this.bookings.push(addedBooking);
+    }
   }
 }

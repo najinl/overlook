@@ -113,49 +113,5 @@ export const testData = {
       "numBeds": 2,
       "costPerNight": 423.92
     }
-  ],
-  bookingsComplete: [
-    {
-      "id": "5fwrgu4i7k55hl6tb",
-      "userID": 11,
-      "date": new Date("2020/02/06").toLocaleDateString(),
-      "roomNumber": 5,
-      "cost": 261.26
-    },
-    {
-      "id": "5fwrgu4i7k55hl6tc",
-      "userID": 11,
-      "date": new Date("2020/02/05").toLocaleDateString(),
-      "roomNumber": 5,
-      "cost": 261.26
-    },
-    {
-      "id": "5fwrgu4i7k55hl6te",
-      "userID": 15,
-      "date": new Date("2020/01/19").toLocaleDateString(),
-      "roomNumber": 8,
-      "cost": 497.64
-    },
-    {
-      "id": "5fwrgu4i7k55hl6td",
-      "userID": 14,
-      "date": new Date("2020/01/31").toLocaleDateString(),
-      "roomNumber": 20,
-      "cost": 200.39
-    },
-    {
-      "id": "5fwrgu4i7k55hl6tf",
-      "userID": 15,
-      "date": new Date("2022/01/25").toLocaleDateString(),
-      "roomNumber": 2,
-      "cost": 207.24
-    },
-    {
-      "id": "5fwrgu4i7k55hl6tg",
-      "userID": 16,
-      "date": new Date("2020/02/03").toLocaleDateString(),
-      "roomNumber": 17,
-      "cost": 172.09
-    }
-  ],
+  ]
 };

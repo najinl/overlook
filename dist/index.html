@@ -7,7 +7,7 @@
   <title>Overlook</title>
 </head>
 <body>
-  <header class="header">
+  <header class="header hidden" id="headerSection">
     <h1 class="welcome-msg">Stress Less at the Overlook, <span id="userFirstName"></span>!</h1>
     <nav class="navigation">
        <button class="statistics-btn" id="statisticsBtn">
@@ -22,14 +22,27 @@
           <img class="home icon" src="./images/home.svg" alt="Home"/>
           <div class="nav-item"aria-label="go home to see available rooms">Home</div>
        </button>
-       <button class="logout-btn" id="returnToLogin">
+       <button class="logout-btn" id="returnToLogin" onclick="location.reload()">
          <img class="logout icon" src="./images/logout.svg" alt="Door with arrow out"/>
          <div class="nav-item" aria-label="return to login">Logout</div>
        </button>
     </nav>
   </header>
   <main class="main">
-    <summary class="booking-station" id="bookingStation">
+    <section class="login-station" id="loginStation">
+        <h2 class="login-header">Access Your Overlook Hotel Account</h2>
+        <div class="error-message-container">
+          <p class="error-message hidden" id="loginErrorMessage">invalid username and/or password</span></p>
+        </div>
+        <form class="login-form" id="loginForm">
+          <input type="text" name="username" id="usernameField" class="input-container" placeholder="User ID">
+          <input type="password" name="password" id="passwordField" class="input-container" placeholder="Password">
+          <button type="button" id="loginBtn" aria-lable="login">Login</button>
+        </form>
+    </section>
+    <section class="web-api-error hidden" id="webApiError">
+    </section>
+    <summary class="booking-station hidden" id="bookingStation">
       <form class="room-type">
         <div class="date">
         </div>
@@ -49,7 +62,7 @@
           <input class="room-tag" id="suite" type="checkbox" value="suite">
           <label for="suite">Suite</label>
         </div>
-        <button id="searchDate">Go</button>
+        <button type="button" id="searchDate" aria-label="start room search">Go</button>
       </form>
     </summary>
     <section class="user-statistics hidden" id="userStatistics">
