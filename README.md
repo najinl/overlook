@@ -3,16 +3,9 @@
 ## Abstract
 Overlook Hotel is not a creepy hotel...not at all!What it is, however, is an application developed to display tools/skills learned during Module 2 at Turing School of Software & Design. This solo application allows a customer to login to the hotel dashboard and view a history of bookings past or present, the total amount spent at the hotel to-date, and what rooms are available for selected dates based on specific filters.
 
-<script type="text/javascript" async src="https://play.vidyard.com/embed/v4.js"></script>
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/68795578/135161796-3e1ef992-a0c4-4e49-bcd8-d114f9f6d382.gif)
 
-<img
-  style="width: 100%; margin: auto; display: block;"
-  class="vidyard-player-embed"
-  src="https://play.vidyard.com/h3Z9Bja4dwyjf8abvr3Sxb.jpg"
-  data-uuid="h3Z9Bja4dwyjf8abvr3Sxb"
-  data-v="4"
-  data-type="inline"
-/>
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/68795578/135163144-e7c27392-9c8b-457d-912e-7d9b6a9437d1.gif)
 
 
 ## Project Goals
