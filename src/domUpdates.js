@@ -88,11 +88,11 @@ let domUpdates = {
     </div>`;
   },
 
-  filterBookingHistory(customer, currentDate) {
+  filterBookingHistory(customer) {
     futureBookings.innerHTML = '<h2 class="reservation-type">FUTURE BOOKINGS</h2>';
     pastBookings.innerHTML = '<h2 class="reservation-type">PAST BOOKINGS</h2>';
-    let allFutureBookings = customer.findFutureBookings(currentDate);
-    let allPastBookings = customer.findPastBookings(currentDate);
+    let allFutureBookings = customer.findFutureBookings();
+    let allPastBookings = customer.findPastBookings();
     allFutureBookings.forEach(book => {
       futureBookings.innerHTML += `
       <section class="booking-card" "flex-column">
